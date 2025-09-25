@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -22,7 +23,8 @@ public class Diretor {
     @Column(length = 200, nullable = false)
     private String nome;
 
-    @OneToMany(mappedBy = "diretor", fetch = jakarta.persistence.FetchType.EAGER)
+    @OneToMany(mappedBy = "diretor", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private List<Filme> filmes;
 
     public Diretor(String nome) {
